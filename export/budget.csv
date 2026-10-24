@@ -1,0 +1,7 @@
+﻿key,label_ar,label_en,step,def
+endpoints,عدد الأجهزة المحمية,Protected endpoints,5,25
+endpoint_cost,سعر حماية الجهاز شهرياً,$/endpoint monthly,0.5,4
+idp_users,مستخدمو الهوية,Identity users,1,20
+idp_cost,سعر مستخدم الهوية شهرياً,$/user monthly,0.5,2
+pentest_year,كلفة اختبار الاختراق سنوياً,Pentest per year,500,6000
+logs_gb,السجلات شهرياً بالغيغابايت,Logs monthly (GB),10,50

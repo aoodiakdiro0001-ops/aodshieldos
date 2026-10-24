@@ -1,0 +1,56 @@
+{
+ "key": "budget",
+ "type": "calc",
+ "icon": "🧮",
+ "color": "#2ad3a7",
+ "label_ar": "حاسبة أمن البيئة",
+ "label_en": "Security Cost Calculator",
+ "note": "تقدير ترتيبي لا رقم تعاقد: استبدل الأسعار بتسعيرة مزوّدك سارية اليوم وأضف هامشاً للحوادث.",
+ "fields": [
+  {
+   "key": "endpoints",
+   "label_ar": "عدد الأجهزة المحمية",
+   "label_en": "Protected endpoints",
+   "step": 5,
+   "def": 25
+  },
+  {
+   "key": "endpoint_cost",
+   "label_ar": "سعر حماية الجهاز شهرياً",
+   "label_en": "$/endpoint monthly",
+   "step": 0.5,
+   "def": 4
+  },
+  {
+   "key": "idp_users",
+   "label_ar": "مستخدمو الهوية",
+   "label_en": "Identity users",
+   "step": 1,
+   "def": 20
+  },
+  {
+   "key": "idp_cost",
+   "label_ar": "سعر مستخدم الهوية شهرياً",
+   "label_en": "$/user monthly",
+   "step": 0.5,
+   "def": 2
+  },
+  {
+   "key": "pentest_year",
+   "label_ar": "كلفة اختبار الاختراق سنوياً",
+   "label_en": "Pentest per year",
+   "step": 500,
+   "def": 6000
+  },
+  {
+   "key": "logs_gb",
+   "label_ar": "السجلات شهرياً بالغيغابايت",
+   "label_en": "Logs monthly (GB)",
+   "step": 10,
+   "def": 50
+  }
+ ],
+ "formula_js": "(v) => { var ep = v.endpoints * v.endpoint_cost; var idp = v.idp_users * v.idp_cost; var pent = v.pentest_year / 12; var logs = v.logs_gb * 0.5; var m = ep + idp + pent + logs; var big = Math.max(ep, idp, pent, logs); var bigName = big === ep ? 'حماية الأجهزة' : (big === idp ? 'مقاعد الهوية' : (big === pent ? 'اختبار الاختراق' : 'جمع السجلات')); return '<b>' + m.toFixed(2) + '</b> دولار شهرياً — أي <b>' + (m*12).toFixed(0) + '</b> دولار سنوياً. أكبر بند: ' + bigName + ' بـ<b>' + (big / Math.max(m, 0.01) * 100).toFixed(0) + '</b> بالمئة (السجل محسوب 0.5 دولار للغيغابايت).'; }",
+ "formulaNote2Title": "تفصيل الصيغة",
+ "formulaNote": "الأجهزة = العدد × سعر الحماية. الهوية = المستخدمون × مقعدهم. اختبار الاختراق = السنوي ÷ 12. السجل = غيغابايت × 0.5. الشهري = المجموع، والسنوي × 12. راقب بند الأجهزة: إن تجاوز نصف الكلفة فراجع التراخيص، وثبّت اختبار اختراق خارجي سنوياً بدل دفع ثمن حادث واحد."
+}
